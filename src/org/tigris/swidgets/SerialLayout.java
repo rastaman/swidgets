@@ -43,9 +43,9 @@ public class SerialLayout extends LineLayout {
     public static final int CENTER = 22;
     public static final int FILL = 23;
 
-    String position = WEST;
-    int direction = LEFTTORIGHT;
-    int alignment = TOP;
+    private String position = WEST;
+    private int direction = LEFTTORIGHT;
+    private int alignment = TOP;
 
     public SerialLayout() {
         this(Horizontal.getInstance(), WEST, LEFTTORIGHT, TOP);

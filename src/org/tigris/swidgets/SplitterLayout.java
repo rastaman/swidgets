@@ -16,17 +16,26 @@ import java.awt.event.*;
  */
 public class SplitterLayout extends ProportionalLayout {
 
-    SplitterMouseListener splitterMouseListener;
+    private SplitterMouseListener splitterMouseListener;
 
     public SplitterLayout() {
         this(HORIZONTAL);
     }
 
+    /**
+     * The constructor. 
+     * 
+     * @param orientation the orientation
+     */
     public SplitterLayout(Orientation orientation) {
         super(orientation);
         splitterMouseListener = new SplitterMouseListener();
     }
 
+    /**
+     * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String, 
+     * java.awt.Component)
+     */
     public void addLayoutComponent(String name, Component comp) {
         super.addLayoutComponent(name, comp);
 

@@ -47,17 +47,17 @@ public class ArrowIcon implements Icon, Serializable, SwingConstants {
     {0, 0, 0, 0, 3, 3, 0, 0, 0}
     };
 
-    int direction;
-    int width = SIZE;
-    int height = SIZE;
+    private int direction;
+    private int width = SIZE;
+    private int height = SIZE;
 
     /** Construct an ArrowIcon pointing in the given direction
      *
      * @param direction the direction the arrow will point, this being
      * one of the constants NORTH, SOUTH, EAST, WEST
      */        
-    public ArrowIcon(int direction) {
-        this.direction = direction;
+    public ArrowIcon(int dir) {
+        this.direction = dir;
     }
 
     /** Paints the icon. The top-left corner of the icon is drawn at
@@ -139,10 +139,17 @@ public class ArrowIcon implements Icon, Serializable, SwingConstants {
         return SIZE;
     }
     
-    public void setIconHeight(int height) {
-        this.height = height;
+    /**
+     * @param h the height for the icon
+     */
+    public void setIconHeight(int h) {
+        height = h;
     }
-    public void setIconWidth(int width) {
-        this.width = width;
+    
+    /**
+     * @param w the width of the icon
+     */
+    public void setIconWidth(int w) {
+        width = w;
     }
 }

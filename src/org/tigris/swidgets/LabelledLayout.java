@@ -172,7 +172,11 @@ public class LabelledLayout implements LayoutManager, java.io.Serializable {
         }
     }
 
-    /* Required by LayoutManager. */
+    /** 
+     * Required by LayoutManager.
+     * 
+     * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
+     */
     public Dimension minimumLayoutSize(Container parent) {
         synchronized (parent.getTreeLock()) {
             Insets insets = parent.getInsets();
@@ -198,6 +202,9 @@ public class LabelledLayout implements LayoutManager, java.io.Serializable {
         }
     }
 
+    /**
+     * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
+     */
     public void layoutContainer(Container parent) {
         synchronized (parent.getTreeLock()) {
             int sectionX = parent.getInsets().left;

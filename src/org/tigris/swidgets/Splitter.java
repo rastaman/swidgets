@@ -27,14 +27,27 @@ import javax.swing.plaf.basic.BasicSplitPaneUI;
  */
 public class Splitter extends JComponent {
 
+    /**
+     * The orientation for a horizontal splitter
+     */
     public static final Orientation HORIZONTAL_SPLIT = Horizontal.getInstance();
+    
+    /**
+     * The orientation for a vertical splitter
+     */
     public static final Orientation VERTICAL_SPLIT = Vertical.getInstance();
 
-    public static final int NONE = -1;
-    public static final int WEST = 0;
-    public static final int EAST = 1;
-    public static final int NORTH = 0;
-    public static final int SOUTH = 1;
+    /** The side of the splitter of the component to be hidden on 
+     * a quick hide action. */
+    protected static final int NONE = -1;
+    /** The side of the splitter to be hidden on a quick hide action: WEST */
+    protected static final int WEST = 0;
+    /** The side of the splitter to be hidden on a quick hide action: EAST */
+    protected static final int EAST = 1;
+    /** The side of the splitter to be hidden on a quick hide action: NORTH */
+    protected static final int NORTH = 0;
+    /** The side of the splitter to be hidden on a quick hide action: SOUTH */
+    protected static final int SOUTH = 1;
 
     /**
      * The orientation of this splitter. Orientation does not
@@ -79,8 +92,12 @@ public class Splitter extends JComponent {
     /**
      * The quick hide buttons
      */
-    ArrowButton buttonNorth = null;
-    ArrowButton buttonSouth = null;
+    private ArrowButton buttonNorth = null;
+    
+    /**
+     * The quick hide buttons
+     */
+    private ArrowButton buttonSouth = null;
     
     /**
      * Component which knows how to paint the split divider.
@@ -150,6 +167,8 @@ public class Splitter extends JComponent {
      *
      * @parameter side the side of the splitter to place the component
      * being one of the constants NORTH, SOUTH, EAST or WEST
+     *
+     * @param comp the component to be resized
      */
     public void registerComponent(int side, Component comp)
     {
@@ -254,6 +273,8 @@ public class Splitter extends JComponent {
 
     /**
      * Resizes the divider delegate when this component is resized.
+     *
+     * @see java.awt.Component#setSize(java.awt.Dimension)
     **/
     public void setSize(Dimension d) {
         super.setSize(d);
@@ -264,6 +285,8 @@ public class Splitter extends JComponent {
 
     /**
      * Resizes the divider delegate when this component is resized.
+     *
+     * @see java.awt.Component#setSize(int, int)
     **/
     public void setSize(int width, int height) {
         super.setSize(width, height);

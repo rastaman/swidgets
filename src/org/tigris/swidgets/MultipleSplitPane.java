@@ -18,19 +18,39 @@ public class MultipleSplitPane extends JComponent {
 
     private Splitter[] splitterArray;
 
+    /**
+     * The constructor. 
+     * 
+     * @param componentArray the panes to be seperated by the splitter
+     */
     public MultipleSplitPane(Component componentArray[]) {
         this(componentArray.length);
     }
 
+    /**
+     * The constructor.
+     * 
+     * @param componentArray the panes to be seperated by the splitter
+     * @param orientation the orientation
+     */
     public MultipleSplitPane(Component componentArray[],
 			     Orientation orientation) {
         this(componentArray.length, orientation);
     }
 
+    /**
+     * The constructor.
+     * 
+     * @param paneCount the number of panels to be split
+     */
     public MultipleSplitPane(int paneCount) {
         this(paneCount, HORIZONTAL_SPLIT);
     }
 
+    /**
+     * @param paneCount the number of panes
+     * @param orientation the orientation
+     */
     public MultipleSplitPane(int paneCount, Orientation orientation) {
         this.setLayout(new SplitterLayout(orientation));
         int splitterCount = paneCount - 1;
@@ -46,6 +66,10 @@ public class MultipleSplitPane extends JComponent {
             splitterArray[splitterCount - 1].setQuickHide(Splitter.EAST);
         }
     }
+    
+    /**
+     * @see java.awt.Container#add(java.awt.Component, int)
+     */
     public Component add(Component comp, int index) {
         if (!(comp instanceof Splitter)) {
             SplitterLayout splitterLayout = (SplitterLayout) getLayout();
@@ -63,6 +87,9 @@ public class MultipleSplitPane extends JComponent {
         return super.add(comp, index);
     }
 
+    /**
+     * @see java.awt.Container#add(java.awt.Component, java.lang.Object, int)
+     */
     public void add(Component comp, Object constraints, int index) {
         if (!(comp instanceof Splitter)) {
             SplitterLayout splitterLayout = (SplitterLayout) getLayout();
@@ -80,6 +107,9 @@ public class MultipleSplitPane extends JComponent {
         super.add(comp, constraints, index);
     }
 
+    /**
+     * @see java.awt.Container#remove(int)
+     */
     public void remove(int index) {
         SplitterLayout splitterLayout = (SplitterLayout) getLayout();
         if (index >= splitterArray.length) {
