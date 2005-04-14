@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
+
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -14,19 +17,38 @@ import javax.swing.JPanel;
  * are the first column and any component the JLabel is registered
  * with is in a second column next to the label. <p>
  *
- * The height of each row is the largest minimum height of the 2
- * components. <p>
- *
- * The width of the first column is the largest preferred width of the
- * 2 components. <p>
- *
- * The width of the 2nd column is any left over space or the maximum
- * width of the component, whichever is the least. <p>
- *
+ * Components are sized automatically to fill available space in the container
+ * when it is resized. <p>
+ * 
+ * All JLabel widths will be the largest of the JLabel preferred widths (unless
+ * the container is too narrow). <p>
+ * 
+ * The components will take up any left over width unless they are
+ * restricted themselves by a maximum width. <p>
+ * 
+ * The height of each component is either fixed or will resize to use up any
+ * available space in the container. Whether a components height is resizable
+ * is determined by checking whether the preferred height of that component is
+ * greater then its minimum height. This is the case for components such as
+ * JList which would require to expand to show the maximum number or items. <p>
+ * 
+ * If a component is not to have its height resized then its preferred
+ * height and minimum height should be the same. This is the case for
+ * components such as JTextField and JComboBox* which should always stay the
+ * same height. <p>
+ * 
+ * [There is known bug in JRE5 where the prefered height and minimum height of
+ * a JComboBox can differ. LabelledLayout has coded a workaround for this bug.
+ * See - http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6255154 ] <p>
+ * 
  * LabelledLayout can show multiple panels of label/component
  * pairs. The seperation of these panels is indicated by adding a
- * Seperator component to the parent component. Labelled layout starts
- * a new panel when detecting this Seperator.
+ * Seperator component to the container. Labelled layout starts
+ * a new panel when detecting this Seperator. <p>
+ * 
+ * When there are multiple panels, each panel is given equal width.
+ * The width restriction of JLabels and components described above are then
+ * dependent on panel width rather than container width.
  *
  * @author Bob Tarling
  */
@@ -300,29 +322,38 @@ public class LabelledLayout implements LayoutManager, java.io.Serializable {
                 childComp = jlabel.getLabelFor();
                 if (childComp != null)
                     i++;
+                if (childComp instanceof JComboBox) {
+                    System.out.println("We have a JComboBox");
+                    System.out.println("The minimum size is " + childComp.getMinimumSize());
+                    System.out.println("The maximum size is " + childComp.getMaximumSize());
+                    System.out.println("The preferred size is " + childComp.getPreferredSize());
+                }
+
                 if (childComp != null
 		    && childComp.getMinimumSize() != null
 		    && childHeight < childComp.getMinimumSize().getHeight())
 		{
-                    if (childComp != null
-			&& childComp.getPreferredSize() != null
-			&& (childComp.getMinimumSize().getHeight()
-			    < childComp.getPreferredSize().getHeight()))
-		    {
+                    if (isResizable(childComp)) {
                         // If the preferred size is greater then the
                         // minimum size then this child components
                         // actual current size is currently
-                        // unknown. It will be calculated later is a
+                        // unknown. It will be calculated later as a
                         // propertion of the available left over
                         // space.  For now this is flagged as zero.
                         childHeight = 0;
                         ++unknownHeightCount;
+                        if (childComp instanceof JComboBox) {
+                            System.out.println("Setting child height to zero");
+                        }
                     } else {
                         // If a preferred height is not given or is
                         // the same as the minimum height then fix the
                         // height of this row.
                         childHeight =
 			    (int) childComp.getMinimumSize().getHeight();
+                        if (childComp instanceof JComboBox) {
+                            System.out.println("Setting child height to " + childHeight);
+                        }
                     }
                 }
             } else {
@@ -405,6 +436,25 @@ public class LabelledLayout implements LayoutManager, java.io.Serializable {
                 ++row;
             }
         }
+    }
+
+    /**
+     * A component is resizable if its minimum size is less than
+     * its preferred size.
+     * There is a workaround here for a bug introduced in JRE5
+     * where JComboBox minimum and preferred size now differ.
+     * JComboBox is not resizable.
+     * @param comp the component to check for resizability.
+     * @return true if the given component should be resized to take u[p empty
+     * space.
+     */
+    private boolean isResizable(Component comp) {
+        if (comp == null) return false;
+        if (comp instanceof JComboBox) return false;
+        if (comp.getPreferredSize() == null) return false;
+        if (comp.getMinimumSize() == null) return false;
+        return (comp.getMinimumSize().getHeight()
+                    < comp.getPreferredSize().getHeight());
     }
 
     private int calculateHeight(int parentHeight, int totalHeight,
