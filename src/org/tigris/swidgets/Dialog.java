@@ -233,7 +233,7 @@ public abstract class Dialog extends JDialog implements ActionListener {
             || e.getSource() == closeButton
             || e.getSource() == yesButton
             || e.getSource() == noButton) {
-            hide();
+            setVisible(false);
             dispose();
         }
     }

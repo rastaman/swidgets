@@ -8,7 +8,6 @@ import java.awt.LayoutManager;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
