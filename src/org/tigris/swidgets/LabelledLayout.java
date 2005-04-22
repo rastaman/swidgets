@@ -321,12 +321,6 @@ public class LabelledLayout implements LayoutManager, java.io.Serializable {
                 childComp = jlabel.getLabelFor();
                 if (childComp != null)
                     i++;
-                if (childComp instanceof JComboBox) {
-                    System.out.println("We have a JComboBox");
-                    System.out.println("The minimum size is " + childComp.getMinimumSize());
-                    System.out.println("The maximum size is " + childComp.getMaximumSize());
-                    System.out.println("The preferred size is " + childComp.getPreferredSize());
-                }
 
                 if (childComp != null
 		    && childComp.getMinimumSize() != null
@@ -341,18 +335,12 @@ public class LabelledLayout implements LayoutManager, java.io.Serializable {
                         // space.  For now this is flagged as zero.
                         childHeight = 0;
                         ++unknownHeightCount;
-                        if (childComp instanceof JComboBox) {
-                            System.out.println("Setting child height to zero");
-                        }
                     } else {
                         // If a preferred height is not given or is
                         // the same as the minimum height then fix the
                         // height of this row.
                         childHeight =
 			    (int) childComp.getMinimumSize().getHeight();
-                        if (childComp instanceof JComboBox) {
-                            System.out.println("Setting child height to " + childHeight);
-                        }
                     }
                 }
             } else {
