@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     12 sept. 2005 18:15:29                                                        
+
+     Swidgets    
+     Various reusable swing based components
+                   
+     lmaitre                                                                
+     ====================================================================== -->
+<project name="Swidgets" default="dist" basedir="..">
+    <description>
+            Various reusable swing based components
+    </description>
+
+    <!-- ================================= 
+          target: dist              
+         ================================= -->
+    <target name="dist" depends="clean,compile,javadoc,jar" description="--> Various reusable swing based components"/>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="init">
+		<property name="src" value="src"/>
+		<property name="build" value="build"/>
+		<property name="project" value="swidgets"/>
+		<property name="version" value="0.1.1"/>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: compile                     
+         - - - - - - - - - - - - - - - - - -->
+    <target name="compile" description="--> Compile the source files">
+    		<javac srcdir="${src}"
+	         destdir="${build}/classes"
+    			classpath="lib/toolbar.jar"
+		/>
+    </target>
+
+	
+    <!-- ================================= 
+          target: javadoc              
+         ================================= -->
+    <target name="javadoc" depends="init" description="--> Generate the javadocs">
+        <javadoc sourcepath="${src}" destdir="${build}/docs" 
+        	packagenames="org.tigris.${project}" 
+        	classpath="lib/toolbar.jar"/>
+    </target>
+
+	
+    <!-- ================================= 
+          target: jar              
+         ================================= -->
+    <target name="jar" depends="init,compile,javadoc" description="--> Package the compiled classes">
+        <jar destfile="${build}/${project}-${version}.jar" basedir="${build}/classes"></jar>
+        <jar destfile="${build}/${project}-${version}-docs.jar" basedir="${build}/docs"></jar>
+        <jar destfile="${build}/${project}-${version}-src.jar" basedir="${src}"></jar>
+    </target>
+
+    <!-- ================================= 
+          target: clean              
+         ================================= -->
+    <target name="clean" depends="init" description="--> Remove generated artifacts">
+        <delete dir="${build}"/>
+		<mkdir dir="${build}/classes"/>
+    </target>	
+</project>
+
