@@ -23,8 +23,10 @@
     <target name="init">
 		<property name="src" value="src"/>
 		<property name="build" value="build"/>
+		<property name="lib" value="lib"/>
 		<property name="project" value="swidgets"/>
 		<property name="version" value="0.1.1"/>
+    		<property name="toolbar.jar" value="toolbar-1.1.jar"/>
     </target>
 
     <!-- - - - - - - - - - - - - - - - - - 
@@ -33,7 +35,7 @@
     <target name="compile" description="--> Compile the source files">
     		<javac srcdir="${src}"
 	         destdir="${build}/classes"
-    			classpath="lib/toolbar.jar"
+    			classpath="${lib}/${toolbar.jar}"
 		/>
     </target>
 
