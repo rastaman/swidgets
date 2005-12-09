@@ -30,21 +30,21 @@ public abstract class Dialog extends JDialog implements ActionListener {
     
     // The set of available optionTypes
     /** Option type: CLOSE_OPTION */
-    protected static final int CLOSE_OPTION              = 0;
+    public static final int CLOSE_OPTION              = 0;
     /** Option type: YES_NO_OPTION */
-    protected static final int YES_NO_OPTION             = 1;
+    public static final int YES_NO_OPTION             = 1;
     /** Option type: YES_NO_HELP_OPTION */
-    protected static final int YES_NO_HELP_OPTION        = 2;
+    public static final int YES_NO_HELP_OPTION        = 2;
     /** Option type: YES_NO_CANCEL_OPTION */
-    protected static final int YES_NO_CANCEL_OPTION      = 3;
+    public static final int YES_NO_CANCEL_OPTION      = 3;
     /** Option type: YES_NO_CANCEL_HELP_OPTION */
-    protected static final int YES_NO_CANCEL_HELP_OPTION = 4;
+    public static final int YES_NO_CANCEL_HELP_OPTION = 4;
     /** Option type: OK_CANCEL_OPTION */
     public static final int OK_CANCEL_OPTION             = 5;
     /** Option type: OK_CANCEL_HELP_OPTION */
-    protected static final int OK_CANCEL_HELP_OPTION     = 6;
+    public static final int OK_CANCEL_HELP_OPTION     = 6;
     /** Option type: DEFAULT_OPTION */
-    protected static final int DEFAULT_OPTION            = CLOSE_OPTION;
+    public static final int DEFAULT_OPTION            = CLOSE_OPTION;
     
     //TODO: These should be overridden on ArgoDialog to populate from
     //the config file
