@@ -126,4 +126,27 @@ public class MultipleSplitPane extends JComponent {
 	    && !(this.getComponent(index) instanceof Splitter))
 	    super.remove(index);
     }
+    
+    /**
+     * @see java.awt.Container#remove(int)
+     */
+    public void remove(Component comp) {
+        Component previous = null;
+        int count = getComponents().length;
+        for (int i=0; i < count; ++i) {
+            Component component = getComponents()[i];
+            if (component == comp) {
+                super.remove(i);
+                if (previous instanceof Splitter) {
+                    super.remove(i-1);
+                } else if (i + 1 < count && getComponents()[i] instanceof Splitter) {
+                    super.remove(i);
+                }
+                return;
+            }
+            previous = component;
+        }
+    }
+    
+    
 }

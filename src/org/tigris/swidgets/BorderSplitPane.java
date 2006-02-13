@@ -163,6 +163,14 @@ public class BorderSplitPane extends JComponent {
             add(comp);
         }
     }
+    
+    public void remove(Component comp) {
+        topSplitPane.remove(comp);
+        middleSplitPane.remove(comp);
+        bottomSplitPane.remove(comp);
+    }
+
+    
 
     /** 
      * This method is only implemented to satisfy the superclass declaration.
