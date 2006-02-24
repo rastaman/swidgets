@@ -409,7 +409,6 @@ public class LabelledLayout implements LayoutManager, java.io.Serializable {
      */
     private boolean isResizable(Component comp) {
         if (comp == null) return false;
-        if (comp instanceof JScrollPane) return true;
         if (comp instanceof JComboBox) return false;
         if (comp.getPreferredSize() == null) return false;
         if (comp.getMinimumSize() == null) return false;
