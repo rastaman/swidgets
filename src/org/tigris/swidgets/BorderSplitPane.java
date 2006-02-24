@@ -19,6 +19,8 @@ import java.awt.*;
  * @author Bob Tarling
  */
 public class BorderSplitPane extends JComponent {
+    
+    private static final long serialVersionUID = 8342062546421254771L;
     /**
      * The north layout constraint (top of container).
      */

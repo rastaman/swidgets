@@ -17,6 +17,9 @@ import javax.swing.SwingConstants;
  * @author Christopher Bach
  */
 public class DockLayout extends BorderLayout {
+    
+    private static final long serialVersionUID = 5488248873659570282L;
+    
     private ArrayList north = new ArrayList(1);
     private ArrayList south = new ArrayList(1);
     private ArrayList east = new ArrayList(1);

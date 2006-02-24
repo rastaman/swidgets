@@ -24,9 +24,9 @@ import javax.swing.UIManager;
  */
 public class ArrowIcon implements Icon, Serializable, SwingConstants {
 
+    private static final long serialVersionUID = -5251649967037193581L;
     private static final int SIZE = 10;
     private static final int ONE_TOUCH_SIZE = 6;
-    private static final int ONE_TOUCH_OFFSET = 2;
 
     // Sprite buffer for the arrow image of the left button
     private int[][] buffer;

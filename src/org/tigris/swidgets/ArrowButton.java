@@ -14,6 +14,8 @@ import java.awt.*;
  */
 public class ArrowButton extends javax.swing.JButton {
 
+    private static final long serialVersionUID = -8897576333357419116L;
+
     /** Construct an ArrowButton pointing in the given direction
      *
      * @param direction the direction the arrow will point, this being
