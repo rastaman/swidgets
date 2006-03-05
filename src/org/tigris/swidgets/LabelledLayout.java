@@ -357,11 +357,12 @@ public class LabelledLayout implements LayoutManager, java.io.Serializable {
                     try {
                         rowHeight = calculateHeight(parentHeight, totalHeight, unknownHeightCount--, childComp);
                     } catch(ArithmeticException e) {
+                        // We should put the exception as second parameter when we use JDK 1.5 exclusively
                         throw new IllegalStateException(
                                 "Division by zero laying out " + childComp.getClass().getName() +
                                 " on " + parent.getClass().getName() +
                                 " in section " + sectionNo +
-                                " using " + UIManager.getLookAndFeel().getClass().getName(), e);
+                                " using " + UIManager.getLookAndFeel().getClass().getName() + ":" + e.getMessage());                        
                     }
                     totalHeight += rowHeight;
                 }
